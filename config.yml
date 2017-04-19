@@ -10,7 +10,7 @@ model_params:
   optimizer.name: Adam
   optimizer.learning_rate: 0.0001
   source.max_seq_len: 64
-  target.max_seq_len: 11
+  target.max_seq_len: 16
   source.reverse: false
   encoder.class: seq2seq.encoders.BidirectionalRNNEncoder
   encoder.params:
@@ -23,7 +23,7 @@ model_params:
       num_layers: 1
   decoder.class: seq2seq.decoders.AttentionDecoder
   decoder.params:
-    max_decode_length: 11
+    max_decode_length: 16
     rnn_cell:
       cell_class: LSTMCell
       cell_params:
