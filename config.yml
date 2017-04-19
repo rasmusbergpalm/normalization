@@ -1,0 +1,64 @@
+model: AttentionSeq2Seq
+model_params:
+  vocab_source: vocab.txt
+  vocab_target: vocab.txt
+  attention.class: seq2seq.decoders.attention.AttentionLayerBahdanau
+  attention.params:
+      num_units: 128
+  bridge.class: seq2seq.models.bridges.InitialStateBridge
+  embedding.dim: 128
+  optimizer.name: Adam
+  optimizer.learning_rate: 0.0001
+  source.max_seq_len: 16
+  target.max_seq_len: 16
+  source.reverse: false
+  encoder.class: seq2seq.encoders.BidirectionalRNNEncoder
+  encoder.params:
+    rnn_cell:
+      cell_class: LSTMCell
+      cell_params:
+        num_units: 128
+      dropout_input_keep_prob: 1.0
+      dropout_output_keep_prob: 1.0
+      num_layers: 1
+  decoder.class: seq2seq.decoders.AttentionDecoder
+  decoder.params:
+    max_decode_length: 16
+    rnn_cell:
+      cell_class: LSTMCell
+      cell_params:
+        num_units: 128
+      dropout_input_keep_prob: 1.0
+      dropout_output_keep_prob: 1.0
+      num_layers: 2
+
+
+input_pipeline_train:
+  class: ParallelTextInputPipeline
+  params:
+    source_delimiter: ""
+    target_delimiter: ""
+    source_files:
+      - train-source.txt
+    target_files:
+      - train-target.txt
+
+input_pipeline_dev:
+  class: ParallelTextInputPipeline
+  params:
+    source_delimiter: ""
+    target_delimiter: ""
+    source_files:
+      - dev-source.txt
+    target_files:
+      - dev-target.txt
+
+batch_size: 32
+train_steps: 1000000
+output_dir: output
+eval_every_n_steps: 1000
+
+hooks:
+  - class: TrainSampleHook
+    params:
+      every_n_steps: 1000
