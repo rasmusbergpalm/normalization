@@ -1,6 +1,10 @@
 tasks:
   - class: DecodeText
-model_dir: output
+    params:
+      delimiter: ""
+model_dir: ./output
+model_params:
+  inference.beam_search.beam_width: 5
 input_pipeline:
   class: ParallelTextInputPipeline
   params:
