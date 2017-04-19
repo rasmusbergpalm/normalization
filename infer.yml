@@ -1,0 +1,9 @@
+tasks:
+  - class: DecodeText
+model_dir: .
+input_pipeline:
+  class: ParallelTextInputPipeline
+  params:
+    source_delimiter: ""
+    source_files:
+      - test-source.txt
