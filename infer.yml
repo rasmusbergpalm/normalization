@@ -1,6 +1,6 @@
 tasks:
   - class: DecodeText
-model_dir: .
+model_dir: output
 input_pipeline:
   class: ParallelTextInputPipeline
   params:
