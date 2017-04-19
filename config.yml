@@ -1,7 +1,7 @@
 model: AttentionSeq2Seq
 model_params:
-  vocab_source: vocab.txt
-  vocab_target: vocab.txt
+  vocab_source: vocab-source.txt
+  vocab_target: vocab-target.txt
   attention.class: seq2seq.decoders.attention.AttentionLayerBahdanau
   attention.params:
       num_units: 128

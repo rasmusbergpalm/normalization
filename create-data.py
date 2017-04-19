@@ -30,8 +30,8 @@ def create_data(prefix: str, N: int, create_vocab: bool):
     writelines(source, "%s-source.txt" % prefix)
     writelines(target, "%s-target.txt" % prefix)
     if create_vocab:
-        vocab = list(set("".join(target)).union(set("".join(source))))
-        writelines(vocab, "vocab.txt")
+        writelines(list(set("".join(source))), "vocab-source.txt")
+        writelines(list(set("".join(target))), "vocab-target.txt")
 
 
 create_data("train", 1000000, True)
