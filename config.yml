@@ -1,10 +1,7 @@
-model: AttentionSeq2Seq
+model: BasicSeq2Seq
 model_params:
   vocab_source: vocab-source.txt
   vocab_target: vocab-target.txt
-  attention.class: seq2seq.decoders.attention.AttentionLayerBahdanau
-  attention.params:
-      num_units: 128
   bridge.class: seq2seq.models.bridges.InitialStateBridge
   embedding.dim: 128
   optimizer.name: Adam
@@ -21,7 +18,7 @@ model_params:
       dropout_input_keep_prob: 1.0
       dropout_output_keep_prob: 1.0
       num_layers: 1
-  decoder.class: seq2seq.decoders.AttentionDecoder
+  decoder.class: seq2seq.decoders.BasicDecoder
   decoder.params:
     max_decode_length: 16
     rnn_cell:
