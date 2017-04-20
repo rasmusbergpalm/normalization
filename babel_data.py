@@ -16,7 +16,7 @@ formats = ["short", "medium", "long"]
 locales = babel.localedata.locale_identifiers()
 
 
-def create_data(prefix: str, N: int, create_vocab: bool):
+def create(prefix: str, N: int, create_vocab: bool):
     startdate = datetime.date(1900, 1, 1)
     target = []
     source = []
@@ -27,12 +27,8 @@ def create_data(prefix: str, N: int, create_vocab: bool):
         datestr = format_date(date, format=random.choice(formats), locale=random.choice(locales))
         source.append(datestr)
 
-    writelines(source, "%s-source.txt" % prefix)
-    writelines(target, "%s-target.txt" % prefix)
+    writelines(source, "/tmp/%s-source.txt" % prefix)
+    writelines(target, "/tmp/%s-target.txt" % prefix)
     if create_vocab:
-        writelines(list(set("".join(source))), "vocab-source.txt")
-        writelines(list(set("".join(target))), "vocab-target.txt")
-
-
-create_data("train", 1000000, True)
-create_data("dev", 100000, False)
+        writelines(list(set("".join(source))), "/tmp/vocab-source.txt")
+        writelines(list(set("".join(target))), "/tmp/vocab-target.txt")
