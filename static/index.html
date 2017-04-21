@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <link rel="stylesheet" href="static/style.css">
+    <title>seq2seq date parser</title>
 </head>
 <body>
 <div class="container center">
@@ -27,10 +28,10 @@
         <a href="#" onclick="clicker(this);">05.04.2075</a> <br/>
         <a href="#" onclick="clicker(this);">2030/7/8</a> <br/>
         <a href="#" onclick="clicker(this);">25. Novämber 2049</a> <br/>
-        <a href="#" onclick="clicker(this);">6 Mei 1990</a> <br/>
+        <a href="#" dir="rtl" onclick="clicker(this);">12 نومبر، 1918</a> <br/>
         <a href="#" onclick="clicker(this);">Dec 5, 2015</a> <br/>
-        <a href="#" onclick="clicker(this);">26/02/16</a> <br/>
-        <a href="#" onclick="clicker(this);">24 de enero de 2023</a> <br/>
+        <a href="#" onclick="clicker(this);">1975年12月18日</a> <br/>
+        <a href="#" onclick="clicker(this);">24 de enero de 2023</a>
     </p>
 
     <p>By Rasmus Berg Palm</p>
@@ -63,6 +64,7 @@
 
     function clicker(e) {
         input.value = e.innerText;
+        input.dir = e.dir
         parse();
         return false;
     }
