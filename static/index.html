@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="container center">
+    <h1>seq2seq date parser</h1>
+    <p>
+        Type a date below
+    </p>
+
+    <input type="text" id="input" size="14" value="4 May 1986" autofocus="autofocus" onclick="this.select();" onkeyup="parse();"> =
+
+    <span id="output">
+        1986-05-04
+    </span>
+
+    <p>
+        Or try one of these
+    </p>
+    <p>
+        <a href="#" onclick="clicker(this);">03/12/1999</a> <br/>
+        <a href="#" onclick="clicker(this);">03/13/1999</a> <br/>
+        <a href="#" onclick="clicker(this);">05.04.2075</a> <br/>
+        <a href="#" onclick="clicker(this);">2030/7/8</a> <br/>
+        <a href="#" onclick="clicker(this);">25. Novämber 2049</a> <br/>
+        <a href="#" onclick="clicker(this);">6 Mei 1990</a> <br/>
+        <a href="#" onclick="clicker(this);">Dec 5, 2015</a> <br/>
+        <a href="#" onclick="clicker(this);">26/02/16</a> <br/>
+        <a href="#" onclick="clicker(this);">24 de enero de 2023</a> <br/>
+    </p>
+
+    <p>By Rasmus Berg Palm</p>
+
+    <a href="about">About</a>
+</div>
+
+<script type="text/javascript">
+    var output = document.getElementById("output");
+    var input = document.getElementById("input");
+
+    function parse() {
+        var datestr = input.value;
+
+        var request = new XMLHttpRequest();
+        request.open('GET', '/parse?q=' + datestr, true);
+
+        request.onload = function () {
+            if (request.status >= 200 && request.status < 400) {
+                output.innerText = request.responseText;
+            } else {
+                console.error("request error")
+            }
+        };
+        request.onerror = function () {
+            console.error("request error")
+        };
+        request.send();
+    }
+
+    function clicker(e) {
+        input.value = e.innerText;
+        parse();
+        return false;
+    }
+</script>
+</body>
+</html>

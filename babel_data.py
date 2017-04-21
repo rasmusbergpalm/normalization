@@ -27,8 +27,8 @@ def create(prefix: str, N: int, create_vocab: bool):
         datestr = format_date(date, format=random.choice(formats), locale=random.choice(locales))
         source.append(datestr)
 
-    writelines(source, "/tmp/%s-source.txt" % prefix)
-    writelines(target, "/tmp/%s-target.txt" % prefix)
+    writelines(source, "%s-source.txt" % prefix)
+    writelines(target, "%s-target.txt" % prefix)
     if create_vocab:
-        writelines(list(set("".join(source))), "/tmp/vocab-source.txt")
-        writelines(list(set("".join(target))), "/tmp/vocab-target.txt")
+        writelines(list(set("".join(source))), "source-vocab.txt")
+        writelines(list(set("".join(target))), "target-vocab.txt")

@@ -7,7 +7,6 @@ from keras.layers import Dense, Embedding, LSTM, Bidirectional, TimeDistributed,
 import babel_data
 import data
 
-
 def all_acc(y_true, y_pred):
     return K.mean(
         K.all(
@@ -20,18 +19,19 @@ def all_acc(y_true, y_pred):
 
 
 print("Creating data...")
-babel_data.create("train", 1000000, True)
-babel_data.create("dev", 100000, False)
+#babel_data.create("train", 1000000, True)
+#babel_data.create("dev", 100000, False)
 
 print("Loading data...")
-train = data.ParallelReader("train-source.txt", "vocab-source.txt", "", "train-target.txt", "vocab-target.txt", "")
-dev = data.ParallelReader("dev-source.txt", "vocab-source.txt", "", "dev-target.txt", "vocab-target.txt", "")
+train = data.ParallelReader("train-source.txt", "source-vocab.txt", "", "train-target.txt", "target-vocab.txt", "")
+dev = data.ParallelReader("dev-source.txt", "source-vocab.txt", "", "dev-target.txt", "target-vocab.txt", "")
 
 print("Building model...")
 # Encoder
 source = Input(shape=(None,), dtype='int32', name='source')
 embedded = Embedding(output_dim=128, input_dim=train.source_vocab_size(), mask_zero=True)(source)
 last_hid = Bidirectional(LSTM(output_dim=128))(embedded)
+
 # Decoder
 repeated = RepeatVector(train.target.padded.shape[1])(last_hid)
 decoder = LSTM(output_dim=128, return_sequences=True, name="decoder1")(repeated)

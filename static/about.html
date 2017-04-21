@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <p>
+            The date parser uses a neural network type called a sequence to sequence model, or seq2seq for short.
+            A seq2seq model consists of two recurrent neural networks. The first one encodes the input into a
+            fixed size vector. The second one decodes that vector into the output. For more information see Andrej
+            Karpathy great <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">blog post</a>.
+        </p>
+
+        <p>
+            The model is trained on a generated data set using the <a href="http://babel.pocoo.org/">babel</a> package.
+            I generate a random date between 1900 and 2100, and draw a random format and print the date in ISO-8601 and the drawn format. The model
+            is then trained to produce the ISO-8601 date from the formatted one. Since the model has never seen dates outside the range 1900 - 2100 it has a
+            hard time recognizing them.
+        </p>
+
+        <p>
+            The code for reproducing the model (and this webpage) is available <a href="https://github.com/rasmusbergpalm/normalization">here</a>. The model can probably be improved by using attention and coverage.
+        </p>
+    </div>
+</body>
+</html>
