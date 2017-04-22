@@ -19,8 +19,8 @@ def all_acc(y_true, y_pred):
 
 
 print("Creating data...")
-#babel_data.create("train", 1000000, True)
-#babel_data.create("dev", 100000, False)
+babel_data.create("train", 1000000, True)
+babel_data.create("dev", 100000, False)
 
 print("Loading data...")
 train = data.ParallelReader("train-source.txt", "source-vocab.txt", "", "train-target.txt", "target-vocab.txt", "")
