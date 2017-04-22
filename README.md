@@ -3,15 +3,13 @@
 A date parser using a sequence-to-sequence neural network.
 
 ## To train the model
+`python train.py`
 
+## To serve the website
 ```
 export FLASK_APP=serve.py
 flask run
 ```
-
-## To serve the website
-
-`python serve.py`
 
 
 ## To use your new and improved model with the website
