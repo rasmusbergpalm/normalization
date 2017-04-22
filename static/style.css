@@ -4,10 +4,31 @@
 
 input {
     font-size: 18px;
+    border-radius: 4px;
+    padding: 4px;
+    border: 1px solid #cccccc;
+    outline-width: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 
 a {
     text-decoration: none;
+}
+
+input:invalid {
+    border-color: #b94a48;
+    color: #b94a48;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+}
+
+#error-msg {
+    color: #b94a48;
 }
 
 .container {

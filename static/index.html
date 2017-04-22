@@ -19,6 +19,8 @@
         1986-05-04
     </span>
 
+    <small id="error-msg" style="display: none;">The input contains unknown characters.</small>
+
     <p>
         Or try one of these
     </p>
@@ -42,6 +44,7 @@
 <script type="text/javascript">
     var output = document.getElementById("output");
     var input = document.getElementById("input");
+    var error = document.getElementById("error-msg");
 
     function parse() {
         var datestr = input.value;
@@ -51,9 +54,13 @@
 
         request.onload = function () {
             if (request.status >= 200 && request.status < 400) {
+                input.setCustomValidity("");
+                error.style.display = "none";
                 output.innerText = request.responseText;
             } else {
-                console.error("request error")
+                input.setCustomValidity("Unknown character");
+                error.style.display = "block";
+                output.innerText = "xxxx-xx-xx"
             }
         };
         request.onerror = function () {
@@ -64,7 +71,7 @@
 
     function clicker(e) {
         input.value = e.innerText;
-        input.dir = e.dir
+        input.dir = e.dir;
         parse();
         return false;
     }
