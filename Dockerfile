@@ -7,5 +7,5 @@ RUN ["pip", "install", "-r", "requirements.txt"]
 
 ADD . /app
 
-EXPOSE 80
-CMD gunicorn -b 0.0.0.0:80 -w 2 --timeout 600 serve:app
+EXPOSE 5000
+CMD python serve.py
